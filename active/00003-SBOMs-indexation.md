@@ -17,12 +17,16 @@ VEX <--1:N-- CVE
 Currently bombastic stores SBOMS identified with a purl (any string really, but we assume it is purl).
 we need to store SBOMS with a key that can reference a purl OR a CPE.
 
-Food for thought :
+
+Conclusion :
 - it's not really that important what the key is as long as it's unique.
-- It needs to be a single value (a composite tuple does not do it)
 - `pkg` and `cpe` have identifiers at the beginning : `cpe:/a:redhat:amq_interconnect:1::el7`, `pkg:npm/relateurl@0.2.7`
-- a prodsec SBOM can contain multiple CPEs for the root level component [1]
--
+- as bombastic don't care, we'll just store the cpe/pkg string, accordingly to what we find in the SBOM.
+- If multiple cpe are found, the indexer will create multiples entries pointing to the same document.
+
+
+Note:
+a prodsec SBOM can contain multiple CPEs for the root level component [1]
 
 
 Examples:
